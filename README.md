@@ -4,7 +4,7 @@
 
 ## About This Presentation
 
-This interactive HTML presentation showcases my experience and capabilities across the 7 core responsibilities for the Remote Leverage Content & Social Media Specialist role.
+This HTML file showcases my experience and capabilities across the 7 core responsibilities for the Remote Leverage Content & Social Media Specialist role.
 
 ### How to View
 
@@ -41,11 +41,7 @@ This interactive HTML presentation showcases my experience and capabilities acro
 
 ### Contact
 
-- **LinkedIn:** [linkedin.com/in/terry-t-895a31204](https://www.linkedin.com/in/terry-t-895a31204/)
-- **Email:** Tokyo.Terry@gmail.com
-- **Portfolio:** [chizujin.com](https://chizujin.com)
+- [**CV**](https://tokyoterry.github.io/terryt/)
+-  [**LinkedIn:**](https://www.linkedin.com/in/terry-t-895a31204/)
+- [**IT Portfolio:** ](https://drive.google.com/drive/folders/1M53Y-ohmIjAs53rshp1JvpGjoUus5uT3?usp=drive_link)
 
----
-
-**Interview Date:** Tuesday, September 15, 2026 | 12:15 PM EDT  
-**Format:** Zoom | First Round with Hiring Manager
