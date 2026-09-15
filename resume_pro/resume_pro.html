@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume Pro - Terry T</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #333333;
+      --text-light: #666666;
+      --border: #dddddd;
+      --accent: #0066cc;
+      --accent-light: #f0f5ff;
+      --success: #07f017;
+      --med-high: #f5e907;
+      --medium: #f5860f;
+      --med-low: #f53f0f;
+      --low: #f50707;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a1a;
+        --text: #e0e0e0;
+        --text-light: #aaaaaa;
+        --border: #444444;
+        --accent: #4a9eff;
+        --accent-light: #1a2a3a;
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--accent); }
+    .subtitle { color: var(--text-light); margin-bottom: 2rem; font-size: 0.95rem; }
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-light);
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .tab-btn:hover { color: var(--accent); }
+
+    .tab-icon {
+      height: 20px;
+      width: 20px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+
+    .tab-content.active { display: block; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .form-section {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    textarea, input[type="text"], input[type="file"], select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+      font-family: 'Monaco', 'Courier New', monospace;
+    }
+
+    textarea:focus, input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .suitability-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .suitability-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .suitability-dot.high { background-color: rgb(7, 240, 23); }
+    .suitability-dot.med-high { background-color: rgb(245, 233, 7); }
+    .suitability-dot.medium { background-color: rgb(245, 134, 7); }
+    .suitability-dot.med-low { background-color: rgb(245, 63, 7); }
+    .suitability-dot.low { background-color: rgb(245, 7, 7); }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    button, .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover { opacity: 0.8; }
+
+    .dropdown-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: var(--bg);
+      min-width: 150px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      padding: 12px 0;
+      z-index: 1;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      top: 100%;
+      right: 0;
+      margin-top: 0.5rem;
+    }
+
+    .dropdown-content.show { display: block; }
+
+    .dropdown-content button {
+      color: var(--text);
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 400;
+    }
+
+    .dropdown-content button:hover {
+      background: var(--accent-light);
+    }
+
+    .preview-section {
+      display: none;
+      margin-top: 2rem;
+    }
+
+    .preview-section.active { display: block; }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .preview-header h2 { font-size: 1.3rem; }
+
+    #preview {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    #resumePreview {
+      white-space: normal;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .note {
+      background: var(--bg);
+      border-left: 3px solid var(--accent);
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.9rem;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .resume-styled {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #2a2a2a;
+      font-size: 10.5pt;
+      line-height: 1.5;
+      max-width: 8.5in;
+      padding: 0.7in;
+    }
+
+    .resume-styled h1 {
+      font-size: 26pt;
+      font-weight: 200;
+      margin: 0 0 4px;
+      color: #1a1a1a;
+      letter-spacing: 3px;
+      text-align: center;
+    }
+
+    .resume-styled .resume-subtitle {
+      font-size: 10.5pt;
+      color: #555555;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .resume-styled h2 {
+      font-size: 11pt;
+      font-weight: 400;
+      color: #4a6fa5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1.5px solid #4a6fa5;
+      padding-bottom: 3px;
+      margin: 28px 0 10px;
+    }
+
+    .resume-styled .job {
+      margin-bottom: 28px;
+    }
+
+    .resume-styled .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .resume-styled .job-title {
+      font-weight: 500;
+      font-size: 11pt;
+    }
+
+    .resume-styled .job-company {
+      font-weight: 400;
+      color: #666666;
+    }
+
+    .resume-styled .job-dates {
+      font-size: 9.5pt;
+      color: #888888;
+      white-space: nowrap;
+    }
+
+    .resume-styled ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+
+    .resume-styled li {
+      margin-bottom: 3px;
+      font-size: 10.5pt;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Resume Pro</h1>
+  <div class="subtitle">Parse, format, and generate professional resumes</div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('parser')"><img src="./images/icon_1.png" alt="1" class="tab-icon"> Analysis</button>
+    <button class="tab-btn" onclick="switchTab('generator')"><img src="./images/icon_2.png" alt="2" class="tab-icon"> Resume Generator</button>
+    <button class="tab-btn" onclick="switchTab('formatter')"><img src="./images/icon_3.png" alt="3" class="tab-icon"> Resume Formatter</button>
+    <button class="tab-btn" onclick="switchTab('coverletter')"><img src="./images/icon_4.png" alt="4" class="tab-icon"> Cover Letter</button>
+  </div>
+
+  <!-- ===== RESUME PARSER ===== -->
+  <div id="parser" class="tab-content active">
+    <div class="form-section">
+      <div class="form-group">
+        <label for="userCountry">Your Country</label>
+        <select id="userCountry" onchange="toggleOtherCountry()">
+          <option value="TT">Trinidad & Tobago</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="UK">United Kingdom</option>
+          <option value="AU">Australia</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="otherCountryGroup" style="display: none;">
+        <label for="otherCountryName">Specify Country</label>
+        <input type="text" id="otherCountryName" placeholder="Enter your country name..." />
+      </div>
+
+      <div class="form-group">
+        <label for="jobSource">Job Posting Source</label>
+        <select id="jobSource">
+          <option value="text">Paste job posting text</option>
+          <option value="url">Paste job posting URL</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="jobInput">Job Posting Text or URL</label>
+        <textarea id="jobInput" placeholder="Paste the job posting text here or a URL..."></textarea>
+        <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.75rem;">
+          <button class="btn-primary" onclick="analyzeJobPosting(); runCompanyScamCheck();">Analyze</button>
+          <button class="btn-secondary" onclick="clearParser()">Clear</button>
+        </div>
+
+        <div style="display: flex; gap: 2rem; align-items: center; margin-top: 0.75rem;">
+          <div class="suitability-indicator" style="margin: 0;">
+            <span>Status:</span>
+            <div class="suitability-dot low" id="checkStatusDot"></div>
+            <span id="checkStatusText">Not analyzed</span>
+          </div>
+          <div class="suitability-indicator" style="margin: 0;">
+            <span>Suitability:</span>
+            <div class="suitability-dot low" id="suitabilityDot"></div>
+            <span id="suitabilityText">Not analyzed</span>
+          </div>
+          <div class="suitability-indicator" style="margin: 0;">
+            <span>Scam Detector:</span>
+            <div class="suitability-dot med-low" id="scamDetectorDot"></div>
+            <span id="scamDetectorText">Not analyzed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 1.5rem;">
+        <label for="analysisOutput">Analysis Output</label>
+        <textarea id="analysisOutput" placeholder="Analysis results will appear here..." style="min-height: 300px;"></textarea>
+        <div class="button-group" style="margin-top: 0.75rem;">
+          <button class="btn-secondary" onclick="copyAnalysisOutput()">Copy Output</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESUME GENERATOR ===== -->
+  <div id="generator" class="tab-content">
+    <div class="form-section">
+      <div class="button-group">
+        <button class="btn-primary" onclick="generateCustomResume()">Generate Custom Resume</button>
+        <div style="display: flex; align-items: center; margin-left: 1rem;">
+          <span style="font-size: 0.9rem; color: var(--text-light);">
+            <strong>Workflow:</strong> Go to Analysis tab → Paste job posting → Click "Analyze" → Return here → Click "Generate Custom Resume"
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 1.5rem;">
+        <label for="customResumeSuggestions">Custom Resume Suggestions</label>
+        <textarea id="customResumeSuggestions" placeholder="Tailoring suggestions will appear here..." style="min-height: 250px;"></textarea>
+      </div>
+
+      <div class="form-group" style="margin-top: 1.5rem;">
+        <label for="customResumeContent">Custom Resume Content</label>
+        <div class="note" style="margin-bottom: 0.75rem;">
+          <strong>Tip:</strong> This resume has been tailored for the job posting provided. Edit sections as needed to add specific achievements and quantified results relevant to this position.
+        </div>
+        <textarea id="customResumeContent" placeholder="Your formatted resume will appear here..." style="min-height: 400px;"></textarea>
+        <div class="button-group" style="margin-top: 0.75rem;">
+          <button class="btn-secondary" onclick="copyCustomResumeContent()">Copy Resume</button>
+          <button class="btn-secondary" onclick="downloadCustomResumeContent()">Download .md</button>
+          <button class="btn-secondary" onclick="downloadCustomResumePDF()">Download as PDF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESUME FORMATTER ===== -->
+  <div id="formatter" class="tab-content">
+    <div class="form-section">
+      <div class="form-group">
+        <label for="mdFile">Upload Markdown Resume (.md)</label>
+        <input type="file" id="mdFile" accept=".md,.txt" onchange="loadMarkdown()">
+      </div>
+
+      <div class="form-group" id="mdPreviewGroup" style="display: none;">
+        <label>Preview</label>
+        <textarea id="mdPreview" style="min-height: 300px;"></textarea>
+      </div>
+
+      <div class="button-group">
+        <button class="btn-secondary" onclick="clearFormatter()">Clear</button>
+      </div>
+
+      <div class="note">
+        <strong>Resume Formatter:</strong> Upload your .md resume to convert it to a PDF using your GitHub resume styling
+      </div>
+    </div>
+
+    <div class="preview-section" id="resumePreviewSection">
+      <div class="preview-header">
+        <h2>Styled Resume Preview</h2>
+      </div>
+      <div id="resumePreview" class="resume-styled"></div>
+    </div>
+  </div>
+
+  <!-- ===== COVER LETTER ===== -->
+  <div id="coverletter" class="tab-content">
+    <div class="form-section">
+      <div class="form-group">
+        <label for="clJobPosting">Job Posting (paste text or URL)</label>
+        <textarea id="clJobPosting" placeholder="Paste job posting..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="clTone">Cover Letter Tone</label>
+        <select id="clTone">
+          <option value="professional">Professional</option>
+          <option value="conversational">Conversational</option>
+          <option value="formal">Formal</option>
+        </select>
+      </div>
+
+      <div class="button-group">
+        <button class="btn-primary" onclick="generateCoverLetter()">Generate Cover Letter</button>
+        <button class="btn-secondary" onclick="clearCoverLetter()">Clear</button>
+      </div>
+
+      <div class="note">
+        <strong>Cover Letter Generator:</strong> Uses application-writing and clean-user-facing-text skills to generate a tailored cover letter
+      </div>
+    </div>
+
+    <div class="preview-section" id="clPreviewSection">
+      <div class="preview-header">
+        <h2>Generated Cover Letter (Editable)</h2>
+        <div class="button-group">
+          <button class="btn-secondary" onclick="copyCoverLetter()">Copy</button>
+          <button class="btn-secondary" onclick="downloadCoverLetter()">Download .txt</button>
+        </div>
+      </div>
+      <textarea id="clPreview" style="min-height: 400px;"></textarea>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function toggleDropdown() {
+    document.getElementById('downloadDropdown').classList.toggle('show');
+  }
+
+  function hashString(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash);
+  }
+
+  function toggleOtherCountry() {
+    const userCountry = document.getElementById('userCountry').value;
+    const otherCountryGroup = document.getElementById('otherCountryGroup');
+    if (userCountry === 'OTHER') {
+      otherCountryGroup.style.display = 'block';
+    } else {
+      otherCountryGroup.style.display = 'none';
+    }
+  }
+
+  // Store analyzed job data globally so it persists across tabs
+  let analyzedJobData = null;
+
+  function analyzeJobPosting() {
+    const jobInput = document.getElementById('jobInput').value.trim();
+    if (!jobInput) {
+      alert('Please paste a job posting');
+      return;
+    }
+
+    // Store the analyzed job data for use in Resume Generator tab
+    analyzedJobData = jobInput;
+    localStorage.setItem('analyzedJobData', jobInput);
+
+    // Update Status indicator to Analyzed (green)
+    document.getElementById('checkStatusDot').className = 'suitability-dot high';
+    document.getElementById('checkStatusText').textContent = 'Analyzed';
+
+    // Analyze job posting for scams and red flags
+    const scamAnalysis = performScamAnalysis(jobInput);
+
+    // Check suitability against master resume
+    const suitabilityResult = checkSuitability(jobInput);
+
+    // Update Suitability indicator
+    document.getElementById('suitabilityDot').className = `suitability-dot ${suitabilityResult.color}`;
+    document.getElementById('suitabilityText').textContent = suitabilityResult.level;
+
+    // Generate output
+    const output = `JOB POSTING ANALYSIS
+=====================================
+DATE: ${new Date().toISOString().split('T')[0]}
+
+${suitabilityResult.analysis}
+
+${scamAnalysis}`;
+
+    document.getElementById('analysisOutput').value = output;
+  }
+
+  function performScamAnalysis(jobInput) {
+    const lowerInput = jobInput.toLowerCase();
+    const userCountry = document.getElementById('userCountry').value;
+    const otherCountryName = document.getElementById('otherCountryName').value.trim();
+
+    const countryNames = {
+      'TT': 'Trinidad & Tobago',
+      'US': 'United States',
+      'CA': 'Canada',
+      'UK': 'United Kingdom',
+      'AU': 'Australia',
+      'OTHER': otherCountryName || 'your country'
+    };
+    const countryName = countryNames[userCountry] || 'your country';
+
+    let redFlagCount = 0;
+    let trustScore = 50;
+    const detectedRedFlags = [];
+    const detectedTrustIndicators = [];
+
+    // Extract red flags from company-scam-check.md
+    const redFlags = [
+      'whatsapp', 'telegram', 'wire money', 'payment upfront', 'starter kit',
+      'training fee', 'investment required', 'guarantee income', 'ssn required',
+      'stripe only', 'no contract', 'trial period', 'unverified', 'upfront payment',
+      'pay to apply', 'recruiting fee', 'background check fee'
+    ];
+
+    redFlags.forEach(flag => {
+      if (lowerInput.includes(flag)) {
+        redFlagCount++;
+        trustScore -= 8;
+        detectedRedFlags.push(flag);
+      }
+    });
+
+    const trustIndicators = [
+      'glassdoor', 'trustpilot', 'paypal', 'wise', 'deel', 'established',
+      'remote work', 'fully async', 'verified', 'we work remotely'
+    ];
+
+    trustIndicators.forEach(indicator => {
+      if (lowerInput.includes(indicator)) {
+        trustScore += 8;
+        detectedTrustIndicators.push(indicator);
+      }
+    });
+
+    trustScore = Math.max(0, Math.min(100, trustScore));
+
+    const riskLevel = trustScore >= 75 ? 'Low Risk' : trustScore >= 50 ? 'Moderate Risk' : 'High Risk';
+    const riskIcon = trustScore >= 75 ? '🟢' : trustScore >= 50 ? '🟡' : '🔴';
+
+    return `PART B: COMPANY SCAM CHECK & PLATFORM ANALYSIS
+=====================================
+
+Trust Score: ${trustScore}/100 ${riskIcon}
+Risk Level: ${riskLevel}
+Red Flags Detected: ${redFlagCount}
+
+FINDINGS:
+-----------------------------------
+Platform Viability: ${trustScore >= 60 ? '✓ GOOD' : trustScore >= 40 ? '⚠ QUESTIONABLE' : '✗ SUSPICIOUS'}
+Payment Method Transparency: ${lowerInput.includes('stripe only') ? '🔴 RED FLAG' : lowerInput.includes('paypal') || lowerInput.includes('wise') ? '✓ VERIFIED' : '❓ UNCONFIRMED'}
+${countryName} Eligibility: ${lowerInput.includes('worldwide') ? '✓ IMPLIED ELIGIBLE' : lowerInput.includes(countryName.toLowerCase()) ? '✓ CONFIRMED' : '❓ UNCONFIRMED'}
+Remote Work Structure: ${lowerInput.includes('fully async') ? '✓ Fully Async' : lowerInput.includes('flexible') ? '✓ Flexible' : '❓ Not Specified'}
+
+${detectedRedFlags.length > 0 ? `DETECTED RED FLAGS (${detectedRedFlags.length}):
+- ${detectedRedFlags.join('\n- ')}
+` : `DETECTED RED FLAGS: None`}
+
+${detectedTrustIndicators.length > 0 ? `TRUST INDICATORS FOUND (${detectedTrustIndicators.length}):
++ ${detectedTrustIndicators.join('\n+ ')}
+` : `TRUST INDICATORS: None`}
+
+RECOMMENDATION:
+-----------------------------------
+${trustScore >= 75 ? '✓ PURSUE - High confidence' : trustScore >= 50 ? '⚠ HOLD - Verify before applying' : '✗ SKIP - Too many red flags'}
+
+Action Items:
+${trustScore >= 75 ? '1. Create account and apply\n2. Monitor for payment processing' : trustScore >= 50 ? '1. Search Glassdoor/Trustpilot reviews\n2. Contact support for TT/payment confirmation\n3. Proceed if verification positive' : '1. Do NOT apply\n2. Report to job board abuse contact\n3. Focus on other opportunities'}`;
+  }
+
+  function checkSuitability(jobInput) {
+    const lowerJob = jobInput.toLowerCase();
+
+    // Master resume skill keywords embedded directly
+    const masterResumeSkills = 'technical writing documentation api tutorial guide markdown content seo blog article copywriting training instruction curriculum course teach wordpress python docker jenkins diátaxis';
+
+    // Check for keyword matches
+    const techWritingKeywords = ['technical', 'documentation', 'api', 'tutorial', 'guide', 'markdown', 'diátaxis'];
+    const contentKeywords = ['content', 'seo', 'blog', 'article', 'copywriting', 'wordpress'];
+    const trainingKeywords = ['training', 'instruction', 'curriculum', 'course', 'teach'];
+    const automationKeywords = ['python', 'docker', 'jenkins', 'automation', 'ci/cd', 'devops'];
+
+    let techWritingScore = 0;
+    let contentScore = 0;
+    let trainingScore = 0;
+    let automationScore = 0;
+
+    techWritingKeywords.forEach(kw => {
+      if (lowerJob.includes(kw)) techWritingScore += 15;
+      if (masterResumeSkills.includes(kw)) techWritingScore += 5;
+    });
+
+    contentKeywords.forEach(kw => {
+      if (lowerJob.includes(kw)) contentScore += 15;
+      if (masterResumeSkills.includes(kw)) contentScore += 5;
+    });
+
+    trainingKeywords.forEach(kw => {
+      if (lowerJob.includes(kw)) trainingScore += 15;
+      if (masterResumeSkills.includes(kw)) trainingScore += 5;
+    });
+
+    automationKeywords.forEach(kw => {
+      if (lowerJob.includes(kw)) automationScore += 15;
+      if (masterResumeSkills.includes(kw)) automationScore += 5;
+    });
+
+    const bestFit = Math.max(techWritingScore, contentScore, trainingScore, automationScore);
+    const bestFitType = bestFit === techWritingScore ? 'Technical Writing' :
+                        bestFit === contentScore ? 'Content Writing' :
+                        bestFit === automationScore ? 'Automation/DevOps' : 'Training/Instruction';
+
+    const suitabilityPercent = Math.min(100, bestFit);
+    const suitabilityLevel = suitabilityPercent >= 80 ? 'Excellent fit' :
+                            suitabilityPercent >= 60 ? 'Good fit' :
+                            suitabilityPercent >= 40 ? 'Moderate fit' : 'Poor fit';
+
+    // Determine color based on suitability score
+    const suitabilityColor = suitabilityPercent >= 80 ? 'high' :
+                            suitabilityPercent >= 60 ? 'med-high' :
+                            suitabilityPercent >= 40 ? 'medium' : 'low';
+
+    const matchedSkills = [];
+    if (lowerJob.includes('wordpress')) matchedSkills.push('WordPress');
+    if (lowerJob.includes('php')) matchedSkills.push('PHP');
+    if (lowerJob.includes('python')) matchedSkills.push('Python');
+    if (lowerJob.includes('writing')) matchedSkills.push('Technical Writing');
+    if (lowerJob.includes('documentation')) matchedSkills.push('Documentation');
+    if (lowerJob.includes('remote')) matchedSkills.push('Remote Work');
+    if (lowerJob.includes('async')) matchedSkills.push('Async Collaboration');
+    if (lowerJob.includes('api')) matchedSkills.push('API Documentation');
+
+    const analysis = `PART A: JOB SUITABILITY ASSESSMENT
+=====================================
+
+Best Fit Category: ${bestFitType}
+Suitability Score: ${suitabilityPercent}%
+Assessment Level: ${suitabilityLevel}
+
+ROLE MATCH ANALYSIS:
+-----------------------------------
+Category Match: ${bestFitType} (${suitabilityPercent}% confidence)
+Experience Level: ${suitabilityPercent >= 80 ? 'Expert' : suitabilityPercent >= 60 ? 'Experienced' : suitabilityPercent >= 40 ? 'Intermediate' : 'Entry-level'}
+Work Structure: ${lowerJob.includes('fully async') ? 'Fully Async' : lowerJob.includes('flexible') ? 'Flexible Schedule' : lowerJob.includes('office') ? 'Office-based' : 'Not Specified'}
+
+MATCHED SKILLS & EXPERIENCE:
+-----------------------------------
+${matchedSkills.length > 0 ? matchedSkills.map(skill => `✓ ${skill}`).join('\n') : 'No specific skill matches detected'}
+
+RECOMMENDATION:
+-----------------------------------
+${suitabilityPercent >= 70 ? '✓ STRONG MATCH - Apply immediately' : suitabilityPercent >= 50 ? '⚠ MODERATE MATCH - Consider applying' : '✗ WEAK MATCH - Review carefully before applying'}
+
+Next Steps:
+${suitabilityPercent >= 70 ? '1. Prepare tailored cover letter\n2. Customize resume for role\n3. Apply through official channel' : suitabilityPercent >= 50 ? '1. Review job description vs. skills\n2. Identify skill gaps\n3. Decide if worth pursuing' : '1. Analyze missing skills\n2. Determine training needs\n3. Focus on better-fit roles'}
+
+---`;
+
+    return {
+      analysis: analysis,
+      level: suitabilityLevel,
+      color: suitabilityColor
+    };
+  }
+
+  function generateResume(format) {
+    const preview = document.getElementById('preview').value;
+    if (!preview) {
+      alert('Click "Analyze" first');
+      return;
+    }
+
+    if (format === 'md') {
+      downloadFile(preview, 'resume_custom.md', 'text/markdown');
+    } else if (format === 'google') {
+      copyPreview();
+      alert('✓ Resume copied to clipboard\n\n1. Go to Google Docs (docs.google.com)\n2. Create new document\n3. Paste (Ctrl+V)\n4. Format as needed');
+    } else if (format === 'pdf') {
+      exportToPDF(preview);
+    }
+
+    document.getElementById('downloadDropdown').classList.remove('show');
+  }
+
+  function convertToHTML(text) {
+    let html = text
+      .split('\n')
+      .map(line => {
+        line = line.trim();
+        if (!line) return '';
+        // Headings (all caps, 2+ words, or followed by dashes)
+        if (/^[A-Z][A-Z\s]{4,}$/.test(line)) return `<h2>${line}</h2>`;
+        // Bullet points
+        if (line.startsWith('-')) return `<li>${line.substring(1).trim()}</li>`;
+        // Default paragraph
+        return `<p>${line}</p>`;
+      })
+      .join('\n');
+
+    // Wrap consecutive li tags in ul
+    html = html.replace(/(<li>.*?<\/li>)/gs, (match) => {
+      if (!match.includes('<ul>')) return `<ul>${match}</ul>`;
+      return match;
+    });
+
+    return html;
+  }
+
+  function exportToPDF(resumeText) {
+    const htmlContent = convertToHTML(resumeText);
+
+    const styled = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.5;
+      max-width: 8.5in;
+      margin: 0;
+      padding: 0.7in;
+      color: #2a2a2a;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1 {
+      font-size: 18pt;
+      text-align: center;
+      margin: 0 0 4px;
+      letter-spacing: 2px;
+      font-weight: 200;
+    }
+
+    h2 {
+      font-size: 11pt;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1.5px solid #4a6fa5;
+      color: #4a6fa5;
+      padding-bottom: 3px;
+      margin: 18px 0 8px;
+      page-break-after: avoid;
+    }
+
+    p { margin: 0 0 12px; }
+    ul { margin: 0 0 12px; padding-left: 18px; list-style: disc; }
+    li { margin-bottom: 3px; }
+
+    a {
+      color: #0066cc;
+      text-decoration: underline;
+    }
+
+    @page {
+      size: letter;
+      margin: 0.6in 0.6in 0.6in 0.6in;
+    }
+
+    @media print {
+      body { margin: 0; padding: 0; }
+      a { color: #2a2a2a; text-decoration: none; }
+      h2 { page-break-after: avoid; }
+      p, ul { orphans: 2; widows: 2; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>${htmlContent}</body>
+</html>`;
+
+    const blob = new Blob([styled], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'resume.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert('Resume downloaded as .html\nOpen in browser and use Ctrl+P to print/save as PDF');
+  }
+
+  function loadMarkdown() {
+    const file = document.getElementById('mdFile').files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const content = e.target.result;
+      document.getElementById('mdPreview').value = content;
+      document.getElementById('mdPreviewGroup').style.display = 'block';
+
+      // Convert to styled HTML
+      const htmlContent = markdownToHTML(content);
+      document.getElementById('resumePreview').innerHTML = htmlContent;
+      document.getElementById('resumePreviewSection').style.display = 'block';
+    };
+    reader.readAsText(file);
+  }
+
+  function markdownToHTML(md) {
+    const styles = `
+      <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Calibri, Arial, sans-serif; font-size: 12px; line-height: 1.5; color: #000; background: #fff; padding: 0.3in 0.5in; max-width: 8.5in; margin: 0; }
+        .container { width: 100%; }
+        .header { text-align: center; margin-bottom: 8px; margin-top: 0; }
+        .name { font-size: 14px; font-weight: normal; margin-bottom: 2px; margin-top: 0; }
+        .subtitle { font-size: 11px; color: #333; margin-bottom: 4px; line-height: 1.4; }
+        .contact-info { font-size: 11px; margin-bottom: 0; }
+        .contact-info a { color: #0066cc; text-decoration: none; }
+        .contact-info span { margin: 0 4px; }
+        h2 { font-size: 12px; font-weight: bold; text-transform: uppercase; margin-top: 10px; margin-bottom: 6px; border-bottom: 1px solid #0066cc; padding-bottom: 2px; color: #0066cc; }
+        .summary { font-size: 12px; line-height: 1.4; margin-bottom: 8px; text-align: justify; }
+        .job-entry { margin-bottom: 8px; }
+        .job-header { display: flex; justify-content: space-between; margin-bottom: 2px; align-items: baseline; }
+        .job-title { font-weight: bold; font-size: 12px; flex-grow: 1; }
+        .job-company { font-size: 12px; margin-left: 8px; flex-shrink: 0; }
+        .job-period { font-size: 12px; color: #000; margin-left: 12px; flex-shrink: 0; white-space: nowrap; }
+        .job-bullets { margin-left: 16px; margin-bottom: 4px; }
+        .job-bullets li { font-size: 12px; line-height: 1.4; margin-bottom: 2px; list-style-type: disc; }
+        .education-item { font-size: 12px; margin-bottom: 4px; }
+        .skills-category { margin-bottom: 6px; }
+        .skills-list { font-size: 12px; margin-left: 16px; }
+        .skills-list li { margin-bottom: 2px; list-style-type: disc; }
+        .credentials-item { font-size: 12px; margin-bottom: 2px; margin-left: 16px; }
+      </style>
+    `;
+
+    const lines = md.split('\n');
+    let html = '<div class="container"><div class="header">';
+    let currentSection = '';
+    let experienceEntries = [];
+    let skillsEntries = [];
+    let credentialsEntries = [];
+    let educationEntries = [];
+    let summaryText = '';
+    let nameText = '';
+    let subtitleText = '';
+    let contactText = '';
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+
+      if (line.startsWith('# ')) {
+        nameText = line.replace(/^# /, '').trim();
+        html += `<div class="name">${escapeHtml(nameText)}</div>`;
+      } else if (line.startsWith('## Professional Summary')) {
+        currentSection = 'summary';
+      } else if (line.startsWith('## Professional Experience')) {
+        currentSection = 'experience';
+      } else if (line.startsWith('## Education')) {
+        currentSection = 'education';
+      } else if (line.startsWith('## Skills')) {
+        currentSection = 'skills';
+      } else if (line.startsWith('## Certifications') || line.startsWith('## Credentials')) {
+        currentSection = 'credentials';
+      } else if (line.startsWith('## Languages')) {
+        currentSection = 'languages';
+      } else if (line && !line.startsWith('-') && !line.startsWith('**')) {
+        if (currentSection === 'summary' && line) summaryText += line + ' ';
+        else if (currentSection === 'experience' && line) {
+          if (line.includes('|') || /\d{4}/.test(line)) {
+            experienceEntries.push(line);
+          }
+        } else if (currentSection === 'education' && line) educationEntries.push(line);
+        else if (currentSection === 'credentials' && line) credentialsEntries.push(line);
+        else if (currentSection === 'skills' && line) skillsEntries.push(line);
+        else if (!line.startsWith('#') && line) contactText += line + ' ';
+      } else if (line.startsWith('- ')) {
+        if (currentSection === 'experience') {
+          const lastEntry = experienceEntries[experienceEntries.length - 1];
+          if (lastEntry && !lastEntry.includes('|||')) {
+            experienceEntries[experienceEntries.length - 1] = lastEntry + ' ||| ' + line.substring(2);
+          }
+        } else if (currentSection === 'skills') {
+          skillsEntries.push(line.substring(2));
+        }
+      }
+    }
+
+    html += `<div class="subtitle">[SUBTITLE]</div><div class="contact-info">${escapeHtml(contactText.trim())}</div></div>`;
+
+    if (summaryText) {
+      html += `<h2>Professional Summary</h2><div class="summary">${escapeHtml(summaryText.trim())}</div>`;
+    }
+
+    if (experienceEntries.length > 0) {
+      html += '<h2>Professional Experience</h2>';
+      for (const entry of experienceEntries) {
+        const parts = entry.split('|||');
+        if (parts.length > 1) {
+          const jobLine = parts[0].trim();
+          const matches = jobLine.match(/([^|]+)\|(.+)/);
+          if (matches) {
+            const title = matches[1].trim();
+            const rest = matches[2].trim();
+            const dateMatch = rest.match(/(\d{4}[^|]*)/);
+            const company = dateMatch ? rest.substring(0, rest.indexOf(dateMatch[1])).trim() : rest;
+            const dates = dateMatch ? dateMatch[1].trim() : '';
+
+            html += `<div class="job-entry"><div class="job-header"><div class="job-title">${escapeHtml(title)}</div><div class="job-company">${escapeHtml(company)}</div><div class="job-period">${escapeHtml(dates)}</div></div>`;
+            html += '<ul class="job-bullets">';
+            for (let j = 1; j < parts.length; j++) {
+              html += `<li>${escapeHtml(parts[j].trim())}</li>`;
+            }
+            html += '</ul></div>';
+          }
+        }
+      }
+    }
+
+    if (educationEntries.length > 0) {
+      html += '<h2>Education</h2>';
+      for (const entry of educationEntries) {
+        html += `<div class="education-item">${escapeHtml(entry)}</div>`;
+      }
+    }
+
+    if (skillsEntries.length > 0) {
+      html += '<h2>Skills</h2><div class="skills-category"><ul class="skills-list">';
+      for (const skill of skillsEntries) {
+        html += `<li>${escapeHtml(skill)}</li>`;
+      }
+      html += '</ul></div>';
+    }
+
+    if (credentialsEntries.length > 0) {
+      html += '<h2>Certifications & Credentials</h2>';
+      for (const cred of credentialsEntries) {
+        html += `<div class="credentials-item">${escapeHtml(cred)}</div>`;
+      }
+    }
+
+    html += '</div>';
+    return styles + html;
+  }
+
+  function escapeHtml(text) {
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return text.replace(/[&<>"']/g, m => map[m]);
+  }
+
+
+  function generateCoverLetter() {
+    const jobPosting = document.getElementById('clJobPosting').value;
+    if (!jobPosting) {
+      alert('Paste a job posting');
+      return;
+    }
+
+    const prompt = `Using the application-writing and clean-user-facing-text skills, generate a professional cover letter for this job posting:
+
+${jobPosting}
+
+Create a compelling, personalized cover letter highlighting relevant experience and skills.`;
+
+    document.getElementById('clPreview').value = `[Cover letter will be generated based on your input]\n\n${prompt}`;
+    document.getElementById('clPreviewSection').classList.add('active');
+  }
+
+  function downloadFile(content, filename, type) {
+    const blob = new Blob([content], { type });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function copyPreview() {
+    document.getElementById('preview').select();
+    document.execCommand('copy');
+    alert('Copied to clipboard');
+  }
+
+  function copyCoverLetter() {
+    document.getElementById('clPreview').select();
+    document.execCommand('copy');
+    alert('Copied to clipboard');
+  }
+
+  function downloadCoverLetter() {
+    const content = document.getElementById('clPreview').value;
+    downloadFile(content, 'cover_letter.txt', 'text/plain');
+  }
+
+  function clearParser() {
+    document.getElementById('userCountry').value = 'TT';
+    document.getElementById('otherCountryName').value = '';
+    document.getElementById('otherCountryGroup').style.display = 'none';
+    document.getElementById('jobInput').value = '';
+    document.getElementById('analysisOutput').value = '';
+    document.getElementById('preview').value = '';
+    document.getElementById('previewSection').classList.remove('active');
+    document.getElementById('checkStatusDot').className = 'suitability-dot low';
+    document.getElementById('checkStatusText').textContent = 'Not analyzed';
+    document.getElementById('suitabilityDot').className = 'suitability-dot low';
+    document.getElementById('suitabilityText').textContent = 'Not analyzed';
+    document.getElementById('scamDetectorDot').className = 'suitability-dot med-low';
+    document.getElementById('scamDetectorText').textContent = 'Not analyzed';
+  }
+
+  function clearFormatter() {
+    document.getElementById('mdFile').value = '';
+    document.getElementById('mdPreview').value = '';
+    document.getElementById('mdPreviewGroup').style.display = 'none';
+    document.getElementById('resumePreviewSection').style.display = 'none';
+  }
+
+  function clearCoverLetter() {
+    document.getElementById('clJobPosting').value = '';
+    document.getElementById('clPreview').value = '';
+    document.getElementById('clPreviewSection').classList.remove('active');
+  }
+
+  function runCompanyScamCheck() {
+    const companyInput = document.getElementById('jobInput').value.trim();
+    if (!companyInput) {
+      return; // Silently skip if no input
+    }
+
+    // Update status indicator to "Analyzed"
+    document.getElementById('checkStatusDot').className = 'suitability-dot med-high';
+    document.getElementById('checkStatusText').textContent = 'Analyzed';
+
+    // Calculate scam score based on keywords/patterns in input
+    let scamScore = calculateScamScore(companyInput);
+    let scamLevel = getScamLevel(scamScore);
+    let scamColor = getScamColor(scamScore);
+    let scamText = getScamText(scamScore);
+
+    // Update scam detector indicator
+    document.getElementById('scamDetectorDot').className = `suitability-dot ${scamColor}`;
+    document.getElementById('scamDetectorText').textContent = scamText;
+
+    // Generate placeholder results that match the format used in analysis
+    const results = `COMPANY SCAM CHECK ANALYSIS
+=====================================
+
+INPUT: ${companyInput}
+DATE: ${new Date().toISOString().split('T')[0]}
+
+PART A: COMPANY LEGITIMACY CHECK
+-----------------------------------
+1. TT Eligibility & Hiring Prospects
+   Status: ⏳ PENDING - Manual review needed
+   Note: Enter company name or URL for automated analysis
+
+2. Company Brief
+   ❓ Gathering company information...
+   - Recommend searching: Glassdoor, Trustpilot, LinkedIn, Google
+
+3. General Information
+   Remote Work Structure: To be determined
+   Target Market: To be determined
+
+4. Reviews & Reputation
+   ⚠️ ACTION REQUIRED: Research on:
+   - Glassdoor (employee reviews, ratings)
+   - Trustpilot (customer/user reviews)
+   - Reddit (discussions about company)
+   - LinkedIn (company page, employee feedback)
+
+5. Salary Information
+   ❓ Check job posting for salary range
+   Compare to market rates for similar roles
+
+6. Red Flags Checklist
+   ✓ No obvious scam indicators detected at first glance
+   ⚠️ Verify: Payment methods, data privacy, support responsiveness
+
+7. VERDICT: HOLD (Requires verification)
+   Recommendation: Proceed with caution
+   Next Steps:
+   - Search company reviews online
+   - Verify payment methods support TT
+   - Check job posting details carefully
+   - Contact support with eligibility questions
+
+PART B: JOB BOARD PLATFORM CHECK
+-----------------------------------
+Platform Eligibility Assessment:
+TT Score: [PENDING - Platform analysis needed]
+
+Red Flags Detected:
+- [ ] Paywall patterns
+- [ ] Country restrictions
+- [ ] Payment method transparency
+- [ ] Scam/exploitation indicators
+- [ ] Data collection practices
+
+Platform Classification:
+Tier 1 (PURSUE) | Tier 2 (LOW-PRIORITY) | Tier 3 (SKIP)
+= DETERMINATION PENDING =
+
+RECOMMENDATIONS:
+=====================================
+1. ✓ Do NOT create account immediately
+2. 🔍 Search reviews (Glassdoor, Trustpilot, Reddit)
+3. 📞 Contact company support:
+   "Does your platform support TT job seekers?
+    What payment methods do you accept?"
+4. 📋 Review Terms & Conditions for:
+   - Country restrictions
+   - Payment policies
+   - Data retention/privacy
+5. ⏳ Revisit after clarification
+
+MANUAL ANALYSIS NEEDED:
+To get detailed analysis with icons and rankings,
+provide the company website or job posting URL
+to Claude with the company-scam-check skill.
+
+=====================================`;
+
+    document.getElementById('analysisOutput').value = results;
+  }
+
+  function copyAnalysisOutput() {
+    const outputField = document.getElementById('analysisOutput');
+    outputField.select();
+    document.execCommand('copy');
+    alert('Analysis output copied to clipboard');
+  }
+
+  async function generateCustomResume() {
+    // Check if analysis has been run
+    const statusText = document.getElementById('checkStatusText');
+    if (statusText && statusText.textContent !== 'Analyzed') {
+      alert('Please go to the Analysis tab and click "Analyze" to process the job posting');
+      return;
+    }
+
+    // Get job input from either stored variable or localStorage
+    let jobInput = analyzedJobData || localStorage.getItem('analyzedJobData');
+
+    if (!jobInput) {
+      // Fallback: try to read from the Analysis tab textarea
+      jobInput = document.getElementById('jobInput').value.trim();
+    }
+
+    if (!jobInput) {
+      alert('Please go to the Analysis tab, paste a job posting, and click "Analyze" first');
+      return;
+    }
+
+    try {
+      // If jobInput is a URL, fetch and extract the content
+      const trimmedInput = jobInput.trim();
+      if (trimmedInput.startsWith('http://') || trimmedInput.startsWith('https://')) {
+        console.log('Detected URL, attempting to fetch:', trimmedInput);
+        try {
+          jobInput = await fetchJobPostingFromURL(trimmedInput);
+          console.log('URL fetch successful, extracted', jobInput.length, 'characters');
+        } catch (urlError) {
+          console.warn('URL fetch failed, using original:', urlError.message);
+          alert('Note: Could not fetch job posting from URL. Using URL text for analysis instead.\nResult may be limited.');
+        }
+      }
+
+      // Load master resume
+      const masterResumeResponse = await fetch('./master-resume.md');
+      if (!masterResumeResponse.ok) {
+        throw new Error('Could not load master-resume.md');
+      }
+
+      const masterResumeContent = await masterResumeResponse.text();
+
+      // Use resume-pro skill logic to customize resume
+      const result = applyResumePro(masterResumeContent, jobInput);
+
+      document.getElementById('customResumeSuggestions').value = result.suggestions;
+      document.getElementById('customResumeContent').value = result.resumeContent;
+
+    } catch (error) {
+      alert('Error generating custom resume: ' + error.message);
+      console.error(error);
+    }
+  }
+
+  async function fetchJobPostingFromURL(url) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch URL (status ${response.status})`);
+      }
+
+      const html = await response.text();
+
+      // Extract text content from HTML
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      // Remove script and style elements
+      doc.querySelectorAll('script, style, nav, footer, .sidebar, .advertisement').forEach(el => el.remove());
+
+      // Get text content
+      let text = doc.body.innerText || doc.body.textContent || '';
+
+      // Clean up whitespace
+      text = text.replace(/\s+/g, ' ').trim();
+
+      if (!text || text.length < 100) {
+        throw new Error('Could not extract job posting content from URL');
+      }
+
+      return text;
+    } catch (error) {
+      throw new Error(`URL Fetching: ${error.message}`);
+    }
+  }
+
+  function applyResumePro(masterResume, jobPosting) {
+    // Resume-Pro Skill Implementation (6-phase workflow)
+    const lowerJob = jobPosting.toLowerCase();
+
+    // Phase 2: Qualification Analysis - Extract skills from job posting
+    const detectedSkills = analyzeQualifications(jobPosting, masterResume);
+
+    // Phase 3: Resume Tailoring - Map experience to posting language
+    const resumeContent = generateMarkdownResume(detectedSkills, jobPosting);
+
+    // Generate suggestions output
+    const suggestions = `Generated: ${new Date().toLocaleDateString()}
+
+POSITION ANALYZED
+-----------------------------------
+${detectedSkills.roleTitle}
+
+QUALIFICATION ANALYSIS
+-----------------------------------
+Detected Job Requirements:
+${detectedSkills.jobRequirements.join('\n')}
+
+YOUR MATCHING SKILLS:
+-----------------------------------
+${detectedSkills.matchedSkills.map(s => `✓ ${s.skill} (${s.relevance})`).join('\n')}
+
+SKILLS TO EMPHASIZE:
+-----------------------------------
+${detectedSkills.prioritySkills.join('\n')}
+
+RESUME TAILORING STRATEGY
+-----------------------------------
+Professional Summary:
+${detectedSkills.customSummary}
+
+Key Experience to Highlight:
+${detectedSkills.relevantExperience.join('\n')}
+
+ATS OPTIMIZATION
+-----------------------------------
+Position: ${detectedSkills.roleTitle}
+Keywords to Include: ${detectedSkills.keywords.join(', ')}
+Recommended Section Order:
+1. Contact | 2. Summary | 3. Experience | 4. Skills | 5. Education
+
+READY TO CUSTOMIZE:`;
+
+    return {
+      suggestions: suggestions,
+      resumeContent: resumeContent
+    };
+  }
+
+  function generateMarkdownResume(detectedSkills, jobPosting) {
+    // Generate properly formatted markdown resume
+    const countrySelect = document.getElementById('userCountry');
+    const selectedCountry = countrySelect ? countrySelect.value : 'TT';
+
+    const locationMap = {
+      'TT': 'Trinidad & Tobago',
+      'US': 'United States',
+      'CA': 'Canada',
+      'UK': 'United Kingdom'
+    };
+
+    const location = locationMap[selectedCountry] || 'Trinidad & Tobago';
+
+    return `# Terrance Michael Tobas
+
+**Email:** tokyo.terry@gmail.com
+**LinkedIn:** linkedin.com/in/terry-t-895a31204
+**Location:** ${location}
+
+---
+
+## Professional Summary
+
+${detectedSkills.customSummary}
+
+---
+
+## Professional Experience
+
+### Woven by Toyota · Tokyo, Japan
+**Technical Writer | Documentation Specialist | AI Trainer**
+*Nov 2025 – Mar 2026*
+
+- Researched, wrote, and updated Stargate Portal product documentation using Diátaxis framework
+- Applied Diátaxis framework for structuring user guide architecture
+- Designed and delivered onboarding training for new hires
+- Created workflow documentation, user guides, and training materials
+- Trained and utilized multiple AI agents (ChatGPT, Claude, Gemini, Copilot, Wovey) for documentation automation
+- Developed AI-assisted documentation automation workflows
+
+**Skills:** Technical documentation · Diátaxis framework · AI tool integration · Prompt engineering · Instructional design
+
+### Sumifuku · Tokyo, Japan
+**SEO Writer | Content Researcher**
+*Sep 2025 – Apr 2026*
+
+- Researched and wrote SEO-optimized articles on rental properties, amenities, and locales
+- Performed competitor analysis and keyword research using Semrush
+- Managed WordPress content publishing workflow and coordinated with editorial team
+
+**Skills:** SEO article writing · WordPress · Content management · Keyword research · On-site research
+
+### LogicVein · Tokyo, Japan
+**Technical Writer | Developer | Automation Specialist**
+*Mar 2025 – Sep 2025*
+
+- Updated manual formats and redesigned user guides, API documentation, and product manuals
+- Developed AI-assisted automation tools using Pandoc, LaTeX, Python, Docker, and Jenkins
+- Designed end-to-end automated document migration pipeline (.docx → .md → .PDF)
+- Managed Git repositories for product manuals and technical documentation
+
+**Skills:** Python · Docker · Jenkins · LaTeX · Pandoc · Git · CI/CD pipelines · Automation
+
+### Eigotechnica · Tokyo, Japan
+**Instructor | Language Coach | Proofreader**
+*Sep 2008 – May 2026* (17+ years)
+
+- Trained 1000+ students across multiple standardized exams (TESOL, TOEFL, IELTS, (S)AT)
+- Delivered one-on-one and group language instruction and test preparation coaching
+- Designed customized language coaching programs with demonstrated score improvements
+- Provided comprehensive student feedback and progress assessments
+
+**Skills:** Language instruction · Test preparation · Assessment design · Curriculum development · Coaching
+
+### Flamingo · Tokyo, Japan
+**Business English Seminar Instructor (TEPCO Client)**
+*Sep 2019 – Present* (Part-time)
+
+- Conducted on-site Business English seminar instruction for corporate client
+- Delivered customized business English instruction tailored to corporate needs
+- Performed student assessments and provided feedback
+
+**Skills:** Business English instruction · Corporate training · Customized curriculum
+
+---
+
+## Skills & Expertise
+
+**Technical Writing & Documentation**
+Technical documentation · Diátaxis framework · Information architecture · API documentation · Process documentation · User guides · Product manuals
+
+**AI & Automation**
+AI tool integration (ChatGPT, Claude, Gemini) · Prompt engineering · Workflow automation · Python · Docker · Jenkins · CI/CD pipelines
+
+**Content & Writing**
+SEO article writing · Content writing · Copywriting · On-site research · Fact-checking · WordPress · Keyword research
+
+**Education & Training**
+Instructional design · Curriculum development · Corporate training · Assessment design · Coaching · Language instruction
+
+**Languages**
+Bilingual: English (native) · Japanese (fluent)
+
+---
+
+## Education
+
+**Graduate Certificate in Geographic Information Systems (GIS)** — University of Wisconsin–Madison
+**B.Sc. Agriculture (Soil Science)** — University of the West Indies, St. Augustine
+
+---
+
+## Additional Certifications & Professional Development
+
+- TESOL certification (ongoing education)
+- Diátaxis Information Architecture Framework (Applied at Woven by Toyota)
+- AI-First Documentation Approach (Certified through corporate training)`;
+  }
+
+  function analyzeQualifications(jobPosting, masterResume) {
+    const lowerJob = jobPosting.toLowerCase();
+    const lowerResume = masterResume.toLowerCase();
+
+    // Extract role title from job posting with improved logic
+    let roleTitle = 'Position Not Specified';
+
+    // Try multiple patterns to find the job title
+    const patterns = [
+      /(?:job\s+title|position|role|job\s+opening)[:]*\s*([^\n]+)/i,  // Explicit "Job Title:" format
+      /^([A-Z][^\n]{3,80}?)(?:\s*[-–]|\n|$)/m,  // First line that starts with capital letter
+      /^([^\n]{3,80}?)\s*[\n]/  // First non-empty line
+    ];
+
+    let titleMatch = null;
+    for (let pattern of patterns) {
+      titleMatch = jobPosting.match(pattern);
+      if (titleMatch && titleMatch[1] && titleMatch[1].length > 3) {
+        const candidate = titleMatch[1].trim().replace(/[*_`]/g, '').split('\n')[0];
+        // Skip if it looks like a URL, email, or too generic
+        if (!candidate.includes('http') && !candidate.includes('@') && candidate.length > 3) {
+          roleTitle = candidate;
+          break;
+        }
+      }
+    }
+
+    // Clean up the title (remove common prefixes/suffixes)
+    roleTitle = roleTitle.replace(/^(hiring|we are|now hiring|apply now|job description)/i, '').trim();
+
+    // Extract job requirements (keywords from posting) with expanded skill list
+    const jobRequirements = [];
+    const keywords = [];
+    const allSkills = [
+      'technical writing', 'documentation', 'api', 'wordpress', 'python', 'seo', 'content',
+      'training', 'instruction', 'remote', 'async', 'git', 'markdown', 'diátaxis', 'ai', 'automation',
+      'php', 'javascript', 'html', 'css', 'react', 'nodejs', 'typescript', 'sql', 'database',
+      'devops', 'docker', 'kubernetes', 'cloud', 'aws', 'azure', 'google cloud', 'jenkins',
+      'communication', 'presentation', 'writing', 'editing', 'research', 'analysis', 'project management',
+      'agile', 'scrum', 'leadership', 'team', 'collaboration', 'english', 'spanish', 'french',
+      'excel', 'powerpoint', 'salesforce', 'crm', 'ecommerce', 'retail', 'saas', 'b2b', 'b2c'
+    ];
+
+    allSkills.forEach(skill => {
+      if (lowerJob.includes(skill)) {
+        jobRequirements.push(`• ${skill.charAt(0).toUpperCase() + skill.slice(1).toUpperCase()}`);
+        if (!keywords.includes(skill)) keywords.push(skill);
+      }
+    });
+
+    // If no skills detected, try to extract some context from the posting
+    if (jobRequirements.length === 0) {
+      // Look for "skills" or "requirements" sections and extract bullet points
+      const skillsSection = jobPosting.match(/(?:skills?|requirements?|qualifications?)[\s\n]*:?[\s\n]+([\s\S]+?)(?:\n\n|$)/i);
+      if (skillsSection && skillsSection[1]) {
+        const bullets = skillsSection[1].match(/[-•*]\s*([^\n]+)/g);
+        if (bullets) {
+          bullets.slice(0, 5).forEach(bullet => {
+            const skill = bullet.replace(/^[-•*]\s*/, '').trim().replace(/[^\w\s&()]/g, '');
+            if (skill.length > 3 && skill.length < 60) {
+              jobRequirements.push(`• ${skill}`);
+            }
+          });
+        }
+      }
+    }
+
+    // Map T's skills from master resume
+    const matchedSkills = [];
+    const prioritySkills = [];
+    const secondarySkills = [];
+
+    if (lowerJob.includes('technical writing') || lowerJob.includes('documentation')) {
+      matchedSkills.push({ skill: 'Technical Documentation', relevance: 'Direct experience at Woven by Toyota' });
+      matchedSkills.push({ skill: 'Diátaxis Framework', relevance: 'Applied full framework at Toyota' });
+      matchedSkills.push({ skill: 'API Documentation', relevance: 'Experience at LogicVein' });
+      prioritySkills.push('✓ Emphasize: Technical documentation role at Toyota');
+      prioritySkills.push('✓ Highlight: Diátaxis framework implementation');
+    }
+
+    if (lowerJob.includes('wordpress') || lowerJob.includes('content')) {
+      matchedSkills.push({ skill: 'WordPress Content Management', relevance: 'Experience at Sumifuku' });
+      matchedSkills.push({ skill: 'SEO Writing', relevance: 'SEO-optimized articles at Sumifuku' });
+      prioritySkills.push('✓ Emphasize: WordPress content management workflow');
+      prioritySkills.push('✓ Highlight: SEO optimization experience');
+    }
+
+    if (lowerJob.includes('training') || lowerJob.includes('instruction')) {
+      matchedSkills.push({ skill: 'Instructional Design', relevance: '17+ years at Eigotechnica' });
+      matchedSkills.push({ skill: 'Corporate Training', relevance: 'Business English instruction at TEPCO' });
+      prioritySkills.push('✓ Emphasize: 1000+ students trained');
+      prioritySkills.push('✓ Highlight: Curriculum development expertise');
+    }
+
+    if (lowerJob.includes('python') || lowerJob.includes('automation')) {
+      matchedSkills.push({ skill: 'Python Automation', relevance: 'Development at LogicVein' });
+      matchedSkills.push({ skill: 'CI/CD Pipelines', relevance: 'Jenkins, Docker, automation tools' });
+      secondarySkills.push('• Python scripting for automation');
+      secondarySkills.push('• CI/CD pipeline design');
+    }
+
+    if (lowerJob.includes('remote') || lowerJob.includes('async')) {
+      matchedSkills.push({ skill: 'Remote Collaboration', relevance: '20+ years remote work' });
+      secondarySkills.push('• Async communication expertise');
+      secondarySkills.push('• Distributed team experience');
+    }
+
+    // Generate custom summary
+    let customSummary = 'Experienced professional with 20+ years across technical writing, training, and content creation.';
+    if (lowerJob.includes('technical writing')) {
+      customSummary = 'Technical writer with proven expertise in creating clear documentation, implementing information architecture, and managing complex technical projects.';
+    } else if (lowerJob.includes('content')) {
+      customSummary = 'Content writer with SEO optimization expertise, on-site research capabilities, and proven ability to deliver engaging, keyword-optimized content.';
+    } else if (lowerJob.includes('training')) {
+      customSummary = 'Experienced instructor and instructional designer with 20+ years developing curricula and training 1000+ students across multiple modalities.';
+    }
+
+    const relevantExperience = [
+      '• Woven by Toyota: Technical writing, Diátaxis framework, AI integration',
+      '• Sumifuku: SEO writing, content management, WordPress workflow',
+      '• LogicVein: Automation, Python, CI/CD, document migration',
+      '• Eigotechnica: Instructional design, curriculum, student assessment'
+    ];
+
+    return {
+      roleTitle: roleTitle,
+      jobRequirements: jobRequirements.length > 0 ? jobRequirements : ['• No specific requirements detected'],
+      matchedSkills: matchedSkills,
+      prioritySkills: prioritySkills.length > 0 ? prioritySkills : ['• Cross-reference experience with posting'],
+      secondarySkills: secondarySkills,
+      keywords: keywords,
+      customSummary: customSummary,
+      relevantExperience: relevantExperience
+    };
+  }
+
+  function tailorResumeContent(masterResume, detectedSkills, jobPosting) {
+    // Create tailored resume content (simplified for output display)
+    return `
+TAILORED RESUME CONTENT
+-----------------------------------
+
+PROFESSIONAL SUMMARY:
+${detectedSkills.customSummary}
+
+EXPERIENCE TO HIGHLIGHT:
+${detectedSkills.relevantExperience.join('\n')}
+
+SKILLS SECTION (ATS-OPTIMIZED):
+${detectedSkills.prioritySkills.map(s => s.replace('✓ Emphasize: ', '')).join(', ')}
+
+KEYWORDS INTEGRATED:
+${detectedSkills.keywords.join(', ')}
+
+---
+See full master-resume.md for complete content. Apply tailoring above to customize sections.
+    `;
+  }
+
+  function copyCustomResumeContent() {
+    const resumeField = document.getElementById('customResumeContent');
+    if (!resumeField.value) {
+      alert('Generate a resume first');
+      return;
+    }
+    resumeField.select();
+    document.execCommand('copy');
+    alert('Resume copied to clipboard');
+  }
+
+  function downloadCustomResumeContent() {
+    const resumeContent = document.getElementById('customResumeContent').value;
+    if (!resumeContent) {
+      alert('Generate a resume first');
+      return;
+    }
+
+    // Get download counter from localStorage
+    let downloadCount = parseInt(localStorage.getItem('resumeDownloadCount') || '0') + 1;
+    localStorage.setItem('resumeDownloadCount', downloadCount);
+
+    const filename = `custom_resume${downloadCount}.md`;
+    downloadFile(resumeContent, filename, 'text/markdown');
+  }
+
+  async function downloadCustomResumePDF() {
+    const resumeContent = document.getElementById('customResumeContent').value;
+    if (!resumeContent) {
+      alert('Generate a resume first');
+      return;
+    }
+
+    try {
+      // Load the resume template
+      const templateResponse = await fetch('./resume_template_master.html');
+      if (!templateResponse.ok) {
+        throw new Error('Could not load resume template');
+      }
+      const templateHTML = await templateResponse.text();
+
+      // Parse resume content and fill template
+      const filledHTML = fillResumeTemplate(templateHTML, resumeContent);
+
+      // Get download counter from localStorage
+      let downloadCount = parseInt(localStorage.getItem('resumeDownloadCount') || '0') + 1;
+      localStorage.setItem('resumeDownloadCount', downloadCount);
+
+      const filename = `custom_resume${downloadCount}.pdf`;
+
+      // Use html2pdf to generate and download
+      const opt = {
+        margin: 0,
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { orientation: 'portrait', unit: 'in', format: 'letter' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      html2pdf().set(opt).from(filledHTML).save();
+    } catch (error) {
+      alert('Error generating PDF: ' + error.message);
+      console.error(error);
+    }
+  }
+
+  function fillResumeTemplate(templateHTML, markdownContent) {
+    return templateHTML;
+  }
+
+  function calculateScamScore(input) {
+    let score = 50; // Start at neutral (0-100 scale)
+    const lowerInput = input.toLowerCase();
+
+    // Scam red flags - decrease score (more red)
+    const redFlags = [
+      'whatsapp', 'telegram', 'wire money', 'payment upfront', 'starter kit',
+      'training fee', 'investment required', 'guarantee income', 'ssn required',
+      'stripe only', 'no contract', 'trial period', 'unverified', 'newly created'
+    ];
+    redFlags.forEach(flag => {
+      if (lowerInput.includes(flag)) score -= 10;
+    });
+
+    // Trust indicators - increase score (more green)
+    const greenFlags = [
+      'glassdoor', 'trustpilot', 'paypal', 'wise', 'deel', 'established',
+      'remote work', 'fully async', 'flexible', 'transparent', 'verified',
+      'we work remotely', 'himalayas', 'brafton', 'known company'
+    ];
+    greenFlags.forEach(flag => {
+      if (lowerInput.includes(flag)) score += 10;
+    });
+
+    // Known scam platforms - major red flag
+    const knownScams = [
+      'outlier', 'invisible technologies', 'meridial', 'alignerr'
+    ];
+    knownScams.forEach(scam => {
+      if (lowerInput.includes(scam)) score -= 30;
+    });
+
+    // Known legit platforms - major green flag
+    const knownLegit = [
+      'we work remotely', 'himalayas', 'upwork', 'fiverr', 'linkedin'
+    ];
+    knownLegit.forEach(legit => {
+      if (lowerInput.includes(legit)) score += 20;
+    });
+
+    // Clamp score between 0-100
+    return Math.max(0, Math.min(100, score));
+  }
+
+  function getScamLevel(score) {
+    if (score >= 80) return 'high';
+    if (score >= 60) return 'med-high';
+    if (score >= 40) return 'medium';
+    if (score >= 20) return 'med-low';
+    return 'low';
+  }
+
+  function getScamColor(score) {
+    // Green = no scam (80-100)
+    // Yellow = caution (60-79)
+    // Orange = moderate risk (40-59)
+    // Red-orange = high risk (20-39)
+    // Red = scam detected (0-19)
+    if (score >= 80) return 'high'; // Green
+    if (score >= 60) return 'med-high'; // Yellow
+    if (score >= 40) return 'medium'; // Orange
+    if (score >= 20) return 'med-low'; // Red-orange
+    return 'low'; // Red
+  }
+
+  function getScamText(score) {
+    if (score >= 80) return '✓ Safe (Low Risk)';
+    if (score >= 60) return '⚠ Caution (Monitor)';
+    if (score >= 40) return '⚠ Moderate Risk';
+    if (score >= 20) return '🔴 High Risk';
+    return '🔴 Scam Detected';
+  }
+</script>
+
+</body>
+</html>

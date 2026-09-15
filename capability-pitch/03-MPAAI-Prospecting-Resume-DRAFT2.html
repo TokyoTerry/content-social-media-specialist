@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrance M. Tobas - Technical Writer & Training Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Calibri, Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #000;
+            background: #fff;
+            padding: 0.5in;
+            max-width: 8.5in;
+            margin: 0 auto;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        /* Header / Contact Section - CENTERED */
+        .header {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .name {
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 11px;
+            color: #333;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .contact-info {
+            font-size: 11px;
+            margin-bottom: 0;
+        }
+
+        .contact-info a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info span {
+            margin: 0 4px;
+        }
+
+        /* Section Headers - Match link color */
+        h2 {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #0066cc;
+            padding-bottom: 2px;
+            color: #0066cc;
+        }
+
+        /* Professional Summary */
+        .summary {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        /* Job Entry */
+        .job-entry {
+            margin-bottom: 8px;
+        }
+
+        /* Job Header with FLEXBOX RIGHT-ALIGN */
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+            align-items: baseline;
+        }
+
+        .job-title {
+            font-weight: bold;
+            font-size: 12px;
+            flex-grow: 1;
+        }
+
+        .job-company {
+            font-size: 12px;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+
+        .job-period {
+            font-size: 12px;
+            color: #000;
+            margin-left: 12px;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .job-title-line {
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 3px;
+            color: #555;
+        }
+
+        .job-bullets {
+            margin-left: 16px;
+            margin-bottom: 4px;
+        }
+
+        .job-bullets li {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 2px;
+            list-style-type: disc;
+        }
+
+        /* Links in job bullets */
+        .job-bullets a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .job-bullets a:hover {
+            text-decoration: underline;
+        }
+
+        /* Education */
+        .education-item {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        /* White-text dates for university (hidden) */
+        .dates-hidden {
+            color: #ffffff;
+            font-size: 12px;
+        }
+
+        /* Skills */
+        .skills-category {
+            margin-bottom: 6px;
+        }
+
+        .skills-category-title {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .skills-list {
+            font-size: 12px;
+            margin-left: 16px;
+        }
+
+        .skills-list li {
+            margin-bottom: 2px;
+            list-style-type: disc;
+        }
+
+        /* Credentials */
+        .credentials-item {
+            font-size: 12px;
+            margin-bottom: 2px;
+            margin-left: 16px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            .container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header / Contact - CENTERED -->
+        <div class="header">
+            <div class="name">TERRANCE M. TOBAS</div>
+            <div class="subtitle">
+                Technical Writer | Training Specialist | Modernization & Change Consultant
+            </div>
+            <div class="contact-info">
+                <a href="mailto:tokyo.terry@gmail.com">tokyo.terry@gmail.com</a>
+                <span>|</span>
+                <a href="https://www.linkedin.com/in/terry-t-895a31204/">LinkedIn</a>
+                <span>|</span>
+                Trinidad & Tobago
+            </div>
+        </div>
+
+        <!-- Professional Summary -->
+        <h2>Professional Summary</h2>
+        <div class="summary">
+            Technical writing and digital transformation specialist with 15+ years of international experience designing documentation systems, modernization workflows, and training programs. Proven expertise in process automation, CI/CD, Git, technical documentation, curriculum design, and AI tool integration. Uniquely positioned to provide support for digital skills training, developer enablement, and open data governance.
+        </div>
+
+        <!-- Experience -->
+        <h2>Professional Experience</h2>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Technical Writer & Documentation Specialist</div>
+                <div class="job-company">Woven by Toyota, Stargate LOB</div>
+                <div class="job-period">Nov 2025 – Mar 2026</div>
+            </div>
+            <div class="job-title-line">Full-time, Tokyo</div>
+            <ul class="job-bullets">
+                <li>Researched, wrote, and updated <a href="https://share.google/aimode/DO7RLb4eOvPZlfOZN">Stargate Portal documentation</a> for end user, administrator, and developer support</li>
+                <li>Managed Git repositories for all <a href="https://drive.google.com/file/d/1tvnIn7ilIhLjG6UDZCULCfWlh1-RTG05/view?usp=drive_link">Stargate documentation</a></li>
+                <li>Applied <a href="https://diataxis.fr/">Diátaxis framework</a> for restructuring user guide architecture</li>
+                <li>Documented process workflows and created onboarding content for new hires</li>
+                <li>QA checked Japanese and English markdown to pass CI/CD pipelines code linters, test suites, and security checks</li>
+                <li>Worked with SMEs and AI developers to confirm Git-Phrase TMS translation workflow</li>
+                <li>Trained Copilot and custom AI models to replace human-assisted workflow with AI/ML-assisted documentation automation workflows</li>
+                <li>Utilized ChatGPT, Grok, Claude, Gemini, Copilot, Wovey to research, create, format, and translate technical documentation</li>
+                <li>Owned all Stargate customer feedback Jira tickets and applied AI to develop solutions before collaborating with international team members, stakeholders, SMEs, and management</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Technical Writer & Automation Specialist</div>
+                <div class="job-company">LogicVein</div>
+                <div class="job-period">Mar 2025 – Sep 2025</div>
+            </div>
+            <div class="job-title-line">Full-time, Tokyo</div>
+            <ul class="job-bullets">
+                <li>Authored and updated LogicVein <a href="https://drive.google.com/file/d/1MD3gLzChz81o0Qv8u9LUynzAzuN94V67/view?usp=drive_link">Thirdeye</a> and <a href="https://drive.google.com/file/d/1f2TOSX2BtzPa-g3vQE-ooNm3sO9wXXXt/view?usp=drive_link">Netld</a> product manuals</li>
+                <li>Managed Git repositories for all LogicVein documentation</li>
+                <li>Identified areas for improvement and liaised with subject matter experts to redesign and improve technical documentation</li>
+                <li>Developed AI automated manual creation tools using Pandoc, LaTeX, Python, Docker, and Jenkins</li>
+                <li>Implemented custom product manual creation workflows</li>
+                <li>Designed end-to-end automated document migration pipeline (.docx → .md → .PDF) using CI/CD principles</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Curriculum Developer, Instructor Manager & Trainer</div>
+                <div class="job-company">GLOVA</div>
+                <div class="job-period">Dec 2019 – Jul 2022</div>
+            </div>
+            <div class="job-title-line">Full-time, Tokyo</div>
+            <ul class="job-bullets">
+                <li>Managed full curriculum development cycle: client needs assessment, vendor coordination, curriculum design, and student assessment</li>
+                <li>Designed training programs and supporting written content for employee onboarding</li>
+                <li>Trained, managed, scheduled, and supported 100+ trainers and instructors</li>
+                <li>Designed and instructed technical and scientific courses, online training programs, and comprehensive documentation to 100+ students across various institutions</li>
+                <li>Managed complete recruitment process and scheduling</li>
+                <li>Tested and troubleshot custom learning management systems</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Technical Writer, Content Writer</div>
+                <div class="job-company">Rakuten, Cloud Platform Supervisory Department (CPSD)</div>
+                <div class="job-period">Aug 2022 – Apr 2023</div>
+            </div>
+            <div class="job-title-line">Full-time, Tokyo</div>
+            <ul class="job-bullets">
+                <li>Worked with international teams to establish documentation department for new division</li>
+                <li>Created groundwork documentation, staff listings, workflow, and improvement request pages</li>
+                <li>Tested, verified, and documented API workflows and onboarding materials for new employees</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Test Preparation Coach, Blended Learning Instructor</div>
+                <div class="job-company">Alpros, Eigotechnica, Various Institutions</div>
+                <div class="job-period">2014 – 2022</div>
+            </div>
+            <div class="job-title-line">Multiple locations: Tokyo, Yokohama, Chiba</div>
+            <ul class="job-bullets">
+                <li>Prepared thousands of students for standardized examinations (TESOL, TOEFL, IELTS, SAT, Cambridge)</li>
+                <li>Delivered one-on-one and group language instruction with documented 10+ point score improvements</li>
+                <li>Designed and delivered customized language coaching programs</li>
+                <li>Provided comprehensive student feedback and progress assessments</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Technical & Scientific English Writer</div>
+                <div class="job-company">JAMSTEC & NAIWAY</div>
+                <div class="job-period">Jun 2011 – Jun 2012</div>
+            </div>
+            <div class="job-title-line">Yokohama</div>
+            <ul class="job-bullets">
+                <li>Wrote, proofread, and edited technical and scientific content for JAMSTEC press release and landmark paper on the 2011 Tohoku-Oki Earthquake research documentation</li>
+                <li>Wrote and edited educational textbooks in British English</li>
+                <li>Provided intensive English language seminars and examination preparation training for working professionals</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">University Lecturer & Academic English Advisor</div>
+                <div class="job-company">Hosei University</div>
+                <div class="job-period">Apr 2014 – Mar 2016</div>
+            </div>
+            <div class="job-title-line">Tokyo</div>
+            <ul class="job-bullets">
+                <li>Conducted essay writing, speech-making, and presentation courses for university students</li>
+                <li>Provided academic language advising for university applications and study abroad support</li>
+                <li>Proofread and edited university-level academic papers and theses across multiple disciplines</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Business English Seminar Instructor</div>
+                <div class="job-company">Phoenix Consulting (Fortune 500 Client Accounts)</div>
+                <div class="job-period">Jan 2015 – Oct 2015</div>
+            </div>
+            <div class="job-title-line">On-site instruction, Tokyo</div>
+            <ul class="job-bullets">
+                <li>Conducted on-site Business English seminar instruction at Fortune 500 companies: Yasuda Real Estate, TEPCO, Toshiba, JFE Life Corporation, Sumitomo Denso, Nippon Steel, Nissan Chemicals, Hoshizaki Denki, Sumiden Tokyo, NS United Kaiun</li>
+            </ul>
+        </div>
+
+        <!-- Education -->
+        <h2>Education & Certifications</h2>
+        <div class="education-item">
+            <strong>Graduate Certificate in Geographic Information Systems (GIS)</strong> — University of Wisconsin–Madison, USA
+        </div>
+        <div class="education-item">
+            <strong>B.Sc. Tropical Agriculture (Soil Science)</strong> — University of the West Indies, St. Augustine, Trinidad and Tobago
+        </div>
+
+        <div style="margin-top: 8px;">
+            <div class="skills-category-title">Professional Certifications:</div>
+            <div class="credentials-item">TESOL for Business Certification, American TESOL Institute (Aug 2010)</div>
+            <div class="credentials-item">TESOL 120-hour In-Class Certification, American TESOL Institute (Jul 2010)</div>
+            <div class="credentials-item">Cambridge Examination Certified Speaking Examiner, Cambridge University</div>
+            <div class="credentials-item">International Association of Professional Writers and Editors (IAPWE)</div>
+        </div>
+
+        <!-- Languages -->
+        <h2>Languages</h2>
+        <div class="credentials-item">
+            <strong>English</strong> — Native fluency
+        </div>
+        <div class="credentials-item">
+            <strong>Japanese</strong> — Intermediate fluency (15+ years in-country experience)
+        </div>
+
+    </div>
+</body>
+</html>

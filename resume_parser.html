@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume Parser - Terry T</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #ffffff;
+      --text: #333333;
+      --border: #dddddd;
+      --accent: #0066cc;
+      --accent-light: #f0f5ff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a1a;
+        --text: #e0e0e0;
+        --border: #444444;
+        --accent: #4a9eff;
+        --accent-light: #1a2a3a;
+      }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    .form-section {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    textarea, input[type="text"], select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: var(--bg);
+      color: var(--text);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 200px;
+      font-family: 'Monaco', 'Courier New', monospace;
+    }
+    textarea:focus, input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: var(--border);
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      opacity: 0.8;
+    }
+    .note {
+      background: var(--bg);
+      border-left: 3px solid var(--accent);
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.9rem;
+    }
+    .output-section {
+      display: none;
+      margin-top: 2rem;
+    }
+    .output-section.active {
+      display: block;
+    }
+    .output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .output-header h2 {
+      font-size: 1.3rem;
+    }
+    #output {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Resume Parser</h1>
+  <div class="subtitle">Analyze job posting → Generate custom resume</div>
+
+  <div class="form-section">
+    <div class="form-group">
+      <label for="jobSource">Job Posting Source</label>
+      <select id="jobSource">
+        <option value="text">Paste job posting text</option>
+        <option value="url">Paste job posting URL</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="jobInput">Job Posting Text or URL</label>
+      <textarea id="jobInput" placeholder="Paste the job posting text here, or a URL to a job posting..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="resumeVersion">Resume Version</label>
+      <select id="resumeVersion">
+        <option value="auto">Auto-detect best fit</option>
+        <option value="technical">Technical Writing & Documentation</option>
+        <option value="content">Content & SEO Writing</option>
+        <option value="instruction">Instruction, Training & Curriculum</option>
+      </select>
+    </div>
+
+    <div class="button-group">
+      <button class="btn-primary" onclick="analyzeJobPosting()">
+        <span id="btnText">Analyze & Generate Resume</span>
+        <span id="spinner" class="spinner" style="display: none; margin-left: 0.5rem;"></span>
+      </button>
+      <button class="btn-secondary" onclick="clearForm()">Clear</button>
+    </div>
+
+    <div class="note">
+      <strong>How it works:</strong> Paste a job posting (text or URL). Select your target resume version or let Claude auto-detect the best fit. Click "Analyze" and Claude will extract key requirements and generate a customized resume pulling from your master resume.
+    </div>
+  </div>
+
+  <div class="output-section" id="outputSection">
+    <div class="output-header">
+      <h2>Customized Resume</h2>
+      <div class="button-group">
+        <button class="btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
+        <button class="btn-secondary" onclick="downloadAsMarkdown()">Download .md</button>
+      </div>
+    </div>
+    <div id="output"></div>
+  </div>
+</div>
+
+<script>
+async function analyzeJobPosting() {
+  const jobInput = document.getElementById('jobInput').value.trim();
+  const resumeVersion = document.getElementById('resumeVersion').value;
+
+  if (!jobInput) {
+    alert('Please paste a job posting or URL');
+    return;
+  }
+
+  const btnText = document.getElementById('btnText');
+  const spinner = document.getElementById('spinner');
+
+  btnText.textContent = 'Analyzing...';
+  spinner.style.display = 'inline-block';
+
+  // Create prompt for Claude to analyze
+  const prompt = `# HIRING MANAGER PROMPT: ATS-Optimized Resume Generator
+**Version 1.0** | Expert AI Prompting + ATS Strategy
+
+## RESUME DATA
+RESUME VERSION: ${resumeVersion === 'auto' ? 'Auto-detect best fit' : resumeVersion}
+
+JOB POSTING:
+---
+${jobInput}
+---
+
+## YOUR TASK:
+
+You are a **Senior Hiring Manager & ATS Optimization Specialist** with 15+ years of recruiting experience.
+
+**Step 1: Analyze the job posting**
+- Extract key skills, requirements, and focus areas
+- Identify HIGH, MEDIUM, LOW weight keywords for ATS matching
+- Note required vs. nice-to-have qualifications
+
+**Step 2: Select best resume version**
+- Choose from master-resume.md: Technical Writing, Content/SEO, or Instruction/Training
+- Match to job posting focus
+
+**Step 3: Flag common resume issues**
+Check for and avoid:
+- Inconsistent date formats
+- Vague job titles that don't match job posting language
+- Bullets with no quantifiable outcomes
+- Generic summary without keywords
+- Missing ATS keywords
+- Keyword stuffing or unnatural language
+
+**Step 4: Generate customized resume**
+Structure (ATS-optimal order):
+1. CONTACT HEADER: Name | Email | LinkedIn | Location
+2. PROFESSIONAL SUMMARY (3-4 lines): Opens with target role title, weaves in 2-3 HIGH-weight keywords naturally, includes quantifiable hook
+3. CORE COMPETENCIES: Organized by relevance to job posting (not alphabetically), grouped by type, HIGH-weight keywords prioritized
+4. PROFESSIONAL EXPERIENCE: Job title | Company | Location | Dates (MM/YYYY format) | 3-5 achievement bullets with metrics
+5. EDUCATION & CERTIFICATIONS: Degree | University | Year | Relevant certifications | Languages with proficiency
+6. OPTIONAL SECTIONS: Only if relevant to role
+
+**Step 5: Natural keyword integration**
+DO:
+- Use keywords in context (achievements, tools, frameworks)
+- Place HIGH keywords in summary, skills section, first 2 bullets per role
+- Vary sentence structure
+- Reference specific outcomes tied to keywords
+
+DON'T:
+- Keyword stuff or force unnatural language
+- Use keywords you don't have genuine experience with
+- Hide keywords in formatted tables/graphics
+- Sacrifice clarity for keywords
+
+**Step 6: Output**
+- Deliver as plain Markdown (.md format)
+- Include ATS optimization notes
+- Provide final checklist verification
+
+**Final Checklist:**
+- [ ] All job posting keywords present and naturally integrated
+- [ ] No spelling/grammar errors
+- [ ] Date formats consistent (MM/YYYY)
+- [ ] Action verbs strong and varied
+- [ ] Metrics/outcomes on 80%+ of bullets
+- [ ] Summary includes 2-3 HIGH-weight keywords
+- [ ] No unexplained acronyms
+- [ ] No generic filler without proof
+- [ ] Tailored to job posting (not generic)
+- [ ] 1-2 pages
+
+**Generate the customized resume now:**`;
+
+  // For demo, show the prompt that would be sent to Claude
+  document.getElementById('output').textContent = `ANALYSIS PROMPT:\n\n${prompt}\n\n---\n\nSend this prompt to Claude to generate your customized resume. The output will be a complete markdown resume tailored to this job posting.`;
+  document.getElementById('outputSection').classList.add('active');
+
+  btnText.textContent = 'Analyze & Generate Resume';
+  spinner.style.display = 'none';
+
+  // Reset after showing prompt
+  setTimeout(() => {
+    alert('Prompt ready. Copy to clipboard and send to Claude, or ask Claude to analyze this job posting for you.');
+  }, 300);
+}
+
+function clearForm() {
+  document.getElementById('jobInput').value = '';
+  document.getElementById('resumeVersion').value = 'auto';
+  document.getElementById('outputSection').classList.remove('active');
+}
+
+function copyToClipboard() {
+  const output = document.getElementById('output');
+  navigator.clipboard.writeText(output.textContent).then(() => {
+    alert('Copied to clipboard!');
+  });
+}
+
+function downloadAsMarkdown() {
+  const output = document.getElementById('output').textContent;
+  const blob = new Blob([output], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'resume_custom.md';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>

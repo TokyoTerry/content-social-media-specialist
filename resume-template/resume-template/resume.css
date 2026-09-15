@@ -1,0 +1,233 @@
+/* ============================================================
+   Resume template — generalized, data-driven styling
+   Ink navy on warm paper, single deep-teal accent, serif display
+   paired with a clean sans body. Restrained and print-friendly.
+   ============================================================ */
+
+:root {
+  --paper: #FBFAF6;
+  --ink: #1E2A32;
+  --ink-soft: #4A5860;
+  --rule: #D8D2C4;
+  --accent: #2F5D50;
+  --accent-soft: #EFF3F1;
+
+  --font-display: "Libre Caslon Text", "Iowan Old Style", "Georgia", serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.resume {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 56px 32px 96px;
+}
+
+.loading, .error {
+  font-family: var(--font-body);
+  color: var(--ink-soft);
+  padding: 64px 0;
+  text-align: center;
+}
+
+.error { color: #9C3B3B; }
+
+/* ---------- Header ---------- */
+
+.resume-header {
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.resume-header h1 {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+.subtitle {
+  font-size: 1.02rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 10px;
+}
+
+.contact-links {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.contact-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.contact-links a:hover,
+.contact-links a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.contact-links .sep {
+  margin: 0 8px;
+  color: var(--rule);
+}
+
+/* ---------- Section headings ---------- */
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--accent);
+  margin: 40px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+h2:first-of-type { margin-top: 0; }
+
+.resume > p {
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+.resume > p.tight { margin-bottom: 4px; }
+
+/* ---------- Professional Experience ---------- */
+
+.job {
+  margin-bottom: 22px;
+}
+
+.job:last-child { margin-bottom: 0; }
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.job-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.job-title .company {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.job-dates {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  font-variant-numeric: oldstyle-nums;
+}
+
+.job-summary {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin: 4px 0 8px;
+}
+
+.job ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.job li {
+  margin-bottom: 4px;
+  font-size: 0.94rem;
+}
+
+/* ---------- Skills ---------- */
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 12px;
+  font-size: 0.92rem;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.skill-row:nth-child(odd) { background: var(--accent-soft); }
+
+.skill-row .label {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ---------- Education ---------- */
+
+.education-item {
+  margin: 0 0 6px;
+  font-size: 0.94rem;
+}
+
+.dates-hidden {
+  color: var(--ink-soft);
+}
+
+/* ---------- Generic lists (Certifications, Associations, Languages) ---------- */
+
+.resume > ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+
+.resume > ul li {
+  margin-bottom: 4px;
+  font-size: 0.94rem;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .resume { padding: 36px 20px 64px; }
+  .resume-header h1 { font-size: 2rem; }
+  .skill-row { grid-template-columns: 1fr; gap: 2px; }
+  .job-header { flex-direction: column; gap: 2px; }
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+  body { background: #fff; }
+  .resume { max-width: 100%; padding: 0.4in; }
+  h2 { break-after: avoid; }
+  .job { break-inside: avoid; }
+  a { color: var(--ink) !important; border: none !important; }
+}

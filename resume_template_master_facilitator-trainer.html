@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrance M.Tobas CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Calibri, Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #000;
+            background: #fff;
+            padding: 0.5in;
+            max-width: 8.5in;
+            margin: 0 auto;
+        }
+        
+        .container {
+            width: 100%;
+        }
+        
+        /* Header / Contact Section - CENTERED */
+        .header {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        
+        .name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .subtitle {
+            font-size: 11px;
+            color: #333;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        
+        .contact-info {
+            font-size: 11px;
+            margin-bottom: 0;
+        }
+        
+        .contact-info a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-info span {
+            margin: 0 4px;
+        }
+        
+        /* Section Headers - Match link color */
+        h2 {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #0066cc;
+            padding-bottom: 2px;
+            color: #0066cc;
+        }
+        
+        /* Professional Summary */
+        .summary {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+        
+        /* Job Entry */
+        .job-entry {
+            margin-bottom: 8px;
+        }
+        
+        /* Job Header with FLEXBOX RIGHT-ALIGN */
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+            align-items: baseline;
+        }
+        
+        .job-title {
+            font-weight: bold;
+            font-size: 12px;
+            flex-grow: 1;
+        }
+        
+        .job-company {
+            font-size: 12px;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+        
+        .job-period {
+            font-size: 12px;
+            color: #000;
+            margin-left: 12px;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+        
+        .job-title-line {
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 3px;
+            color: #555;
+        }
+        
+        .job-bullets {
+            margin-left: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .job-bullets li {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 2px;
+            list-style-type: disc;
+        }
+        
+        /* Education */
+        .education-item {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        
+        /* White-text dates for university (hidden) */
+        .dates-hidden {
+            color: #ffffff;
+            font-size: 12px;
+        }
+        
+        /* Skills */
+        .skills-category {
+            margin-bottom: 6px;
+        }
+        
+        .skills-category-title {
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .skills-list {
+            font-size: 12px;
+            margin-left: 16px;
+        }
+        
+        .skills-list li {
+            margin-bottom: 2px;
+            list-style-type: disc;
+        }
+        
+        /* Credentials */
+        .credentials-item {
+            font-size: 12px;
+            margin-bottom: 2px;
+            margin-left: 16px;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            .container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header / Contact - CENTERED -->
+        <div class="header">
+            <div class="name">Terrance M. Tobas</div>
+            <div class="subtitle">
+                English Language Specialist · Trainer<br>
+                Curriculum Developer
+            </div>
+            <div class="contact-info">
+                <a href="mailto:tokyo.terry@gmail.com">tokyo.terry@gmail.com</a> | 
+                <a href="https://linkedin.com/in/terry-t-895a31204">linkedin.com/in/terry-t-895a31204</a>
+            </div>
+        </div>
+        
+        <!-- Professional Summary -->
+        <h2>Professional Summary</h2>
+        <div class="summary">
+            Native English language specialist with 15+ years' instruction, communication, and content development expertise.Graduate-level educational background and comprehensive training across linguistics, and assessment. Proven track record developing curricula, conducting courses, onboarding new employees, and workflow documetation.
+        </div>
+        
+        <!-- Experience -->
+        <h2>Professional Experience</h2>
+        
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Language Specialist, Trainer</div>
+                <div class="job-company">Woven by Toyota, Tokyo</div>
+                <div class="job-period">Nov 2025 – Mar 2026</div>
+            </div>
+            <ul class="job-bullets">
+                 <li>Collaborated with international teams on training workflows and <a href="https://drive.google.com/file/d/1VU63W-6No1EmKfKZsFgjrZDazcpnjgHF/view?usp=drive_link">documentation processes</a></li>
+                <li>Trained and utilized internal AI models (Claude, ChatGPT, Gemini, Grok, Deepseek) to research, create, and refine technical documentation</li>
+                <li>Quality checked English and Japanese outputs for accuracy, linguistic clarity, and cultural relevance</li>
+            </ul>
+        </div>
+        
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Instructor, Language Coach</div>
+                <div class="job-company">Eigotechnica, Tokyo</div>
+                <div class="job-period">Sep 2008 – May 2026</div>
+            </div>
+            <ul class="job-bullets">
+                <li>Prepared 500+ students for TESOL, TOEFL, IELTS, TOEIC, Cambridge, and (S)AT standardized exams</li>
+                <li>Designed and delivered specialized training curricula for emplyee onboarding <a href="https://drive.google.com/file/d/1a42xD7j3H8Ymm1C-CtiS563jJvS7rmXu/view?usp=drive_link">Japan Meterological Society Forecast and Prediction Course</a>, 
+<a href="https://drive.google.com/file/d/1ZAtEbf_mN63oOtyVbDO5PqLI1aEQNc1w/view?usp=drive_link">Glova LMS User Manual</a></li>
+                <li>Assessed student language proficiency and provided detailed metacognitive feedback on linguistic performance</li>
+                <li>Improved student standardized exam scores by 10+ points through targeted phonetic and grammar instruction</li>
+            </ul>
+        </div>
+        
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">IELTS, TOEIC, TOEFL, (S)SAT Preparation Coach</div>
+                <div class="job-company">Alpros</div>
+                <div class="job-period">Jul 2024 – Mar 2025</div>
+            </div>
+            <ul class="job-bullets">
+                <li>Prepared clients for paper and digital IELTS/TOEIC/(S)SAT examinations</li>
+                <li>Improved student scores by 10 points or more through targeted instruction</li>
+                <li>Conducted intensive writing seminars for adult professionals</li>
+            </ul>
+        </div>       
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Technical Writer</div>
+                <div class="job-company">Rakuten, Cloud Platform Supervisory Department (CPSD), Tokyo</div>
+                <div class="job-period">Aug 2022 – Apr 2023</div>
+            </div>
+            <ul class="job-bullets">
+                <li>Created, updated guides, wikis, and onboarding materials</li>
+                <li>Established the documentation department</li>
+                <li>Documented <a href="https://drive.google.com/file/d/1u5lE4d1VAyCoySRkghw__4IAHfD3HxJb/view?usp=drive_link">technical writer onboarding workflow</a></li>
+            </ul>
+        </div>
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Speaking Examiner</div>
+                <div class="job-company">Cambridge</div>
+                <div class="job-period">Apr 2019 – Jul 2024</div>
+            </div>
+            <ul class="job-bullets">
+                <li>Assessed British English speaking ability according to Cambridge criteria throughout Kanto and Chubu regions</li>
+            </ul>
+        </div>
+        
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Course Instructor</div>
+                <div class="job-company">Showagakuin Tanki University</div>
+                <div class="job-period">Mar 2017 – Mar 2018</div>
+            </div>
+            <ul class="job-bullets">
+                <li>Instructed large classes in English Listening Skills, Grammar, Note-taking, and Presentation Skills</li>
+                <li>Created, administered, and corrected examinations</li>
+            </ul>
+        </div>
+        
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">University Lecturer, Academic English Advisor</div>
+                <div class="job-company">Hosei University, Tokyo</div>
+                <div class="job-period">Apr 2014 – Mar 2016</div>
+            </div>
+            <ul class="job-bullets">
+                <li>Taught university-level essay writing and academic English courses focused on structure, argumentation, and syntax</li>
+                <li>Served as language advisor for 100+ students, providing guidance on linguistic accuracy and cultural communication</li>
+                <li>Proofread and edited academic papers across disciplines, correcting regional usage, grammar, and stylistic issues</li>
+            </ul>
+        </div>
+        
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">Medical English Technical Trainer & Proofreader</div>
+                <div class="job-company">Bokuto, Ootsuka & Hiroo Hospitals, Tokyo</div>
+                <div class="job-period">Oct 2019 – Dec 2019</div>
+            </div>
+            <ul class="job-bullets">
+                <li>Designed and conducted medical English workshops focusing on technical terminology, phonetics, and professional communication</li>
+                <li>Edited and graded medical English writing assignments, providing detailed linguistic feedback</li>
+                <li>Trained healthcare professionals on English communication standards and cultural sensitivity</li>
+            </ul>
+        </div>
+        
+        <!-- Education -->
+        <h2>Education</h2>
+        <div class="education-item">
+            Graduate Certificate in Geographic Information Systems (GIS) — University of Wisconsin–Madison<span class="dates-hidden">, Sep 2001 – Oct 2004</span>
+        </div>
+        <div class="education-item">
+            B.Sc. Agriculture (Soil Science) — University of the West Indies, St. Augustine, Trinidad & Tobago<span class="dates-hidden">, Jan 1995 – Sep 1997</span>
+        </div>
+        
+        <!-- Skills -->
+        <h2>Skills</h2>
+        
+        <div class="skills-category">
+
+            <ul class="skills-list">
+                <li>Native English proficiency</li>
+                <li>Employee & project managemnt management</li>
+            </ul>
+        </div>        
+        <div class="skills-category">
+            <ul class="skills-list">
+                <li>Curriculum design & methodology</li>
+                <li>Test preparation</li>
+                <li>Clear documentation</li>
+                <li>Performance assessment, rubric development & detailed feedback</li>
+            </ul>
+        </div>
+        
+        <!-- Credentials -->
+        <h2>Certifications & Credentials</h2>
+        <div class="credentials-item">
+            Speaking Examiner Certification, Cambridge, Apr 2019
+        </div>
+        <div class="credentials-item">
+            TESOL for Business Certification, American TESOL Institute, Aug 2010
+        </div>
+        <div class="credentials-item">
+            TESOL 120-hour In-Class Certification, American TESOL Institute, Jul 2010
+        </div>
+        <div class="credentials-item">
+            Developing Student Reading Skills Workshop, English Language Education Council (ELEC), Oct 2014
+        </div>
+        
+        <!-- Languages -->
+        <h2>Languages</h2>
+        <div class="credentials-item">
+            English – Native / Professional proficiency (linguistics, phonetics, regional expertise, cultural communication)
+        </div>
+        <div class="credentials-item">
+            Japanese – JLPT N3 equivalent (conversational working level)
+        </div>
+        
+    </div>
+</body>
+</html>

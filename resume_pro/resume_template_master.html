@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrance M. Tobas CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Calibri, Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #000;
+            background: #fff;
+            padding: 0.3in 0.5in;
+            max-width: 8.5in;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        /* Header / Contact Section - CENTERED */
+        .header {
+            text-align: center;
+            margin-bottom: 8px;
+            margin-top: 0;
+        }
+
+        .name {
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: 2px;
+            margin-top: 0;
+        }
+
+        .subtitle {
+            font-size: 11px;
+            color: #333;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .contact-info {
+            font-size: 11px;
+            margin-bottom: 0;
+        }
+
+        .contact-info a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info span {
+            margin: 0 4px;
+        }
+
+        /* Section Headers - Match link color */
+        h2 {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #0066cc;
+            padding-bottom: 2px;
+            color: #0066cc;
+        }
+
+        /* Professional Summary */
+        .summary {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        /* Job Entry */
+        .job-entry {
+            margin-bottom: 8px;
+        }
+
+        /* Job Header with FLEXBOX RIGHT-ALIGN */
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+            align-items: baseline;
+        }
+
+        .job-title {
+            font-weight: bold;
+            font-size: 12px;
+            flex-grow: 1;
+        }
+
+        .job-company {
+            font-size: 12px;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+
+        .job-period {
+            font-size: 12px;
+            color: #000;
+            margin-left: 12px;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .job-title-line {
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 3px;
+            color: #555;
+        }
+
+        .job-bullets {
+            margin-left: 16px;
+            margin-bottom: 4px;
+        }
+
+        .job-bullets li {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 2px;
+            list-style-type: disc;
+        }
+
+        /* Links in job bullets */
+        .job-bullets a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .job-bullets a:hover {
+            text-decoration: underline;
+        }
+
+        /* Education */
+        .education-item {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        /* White-text dates for university (hidden) */
+        .dates-hidden {
+            color: #ffffff;
+            font-size: 12px;
+        }
+
+        /* Skills */
+        .skills-category {
+            margin-bottom: 6px;
+        }
+
+        #education-section {
+            margin-top: 8px;
+        }
+
+        .skills-category-title {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .skills-list {
+            font-size: 12px;
+            margin-left: 16px;
+        }
+
+        .skills-list li {
+            margin-bottom: 2px;
+            list-style-type: disc;
+        }
+
+        /* Credentials */
+        .credentials-item {
+            font-size: 12px;
+            margin-bottom: 2px;
+            margin-left: 16px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            .container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header / Contact - CENTERED -->
+        <div class="header">
+            <div class="name">Terrance M. Tobas</div>
+            <div class="subtitle">
+                [SUBTITLE HERE]
+            </div>
+            <div class="contact-info">
+                <a href="mailto:tokyo.terry@gmail.com">tokyo.terry@gmail.com</a>
+            </div>
+        </div>
+
+        <!-- Professional Summary -->
+        <h2>Professional Summary</h2>
+        <div class="summary">
+            [SUMMARY HERE]
+        </div>
+
+        <!-- Experience -->
+        <h2>Professional Experience</h2>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <div class="job-title">[JOB TITLE]</div>
+                <div class="job-company">[COMPANY]</div>
+                <div class="job-period">[DATES]</div>
+            </div>
+            <ul class="job-bullets">
+                <li>[BULLET 1]</li>
+                <li>[BULLET 2]</li>
+                <li>[BULLET 3]</li>
+            </ul>
+        </div>
+
+        <!-- Education -->
+        <h2 id="education-section">Education</h2>
+        <div class="education-item">
+            [DEGREE] — [UNIVERSITY]<span class="dates-hidden">, [DATES]</span>
+        </div>
+
+        <!-- Skills -->
+        <h2 id="skills-section">Skills</h2>
+
+        <div class="skills-category">
+            <ul class="skills-list">
+                <li>[SKILL 1]</li>
+                <li>[SKILL 2]</li>
+            </ul>
+        </div>
+
+        <!-- Credentials -->
+        <h2>Certifications & Credentials</h2>
+        <div class="credentials-item">
+            [CREDENTIAL 1]
+        </div>
+
+        <!-- Languages -->
+        <h2>Languages</h2>
+        <div class="credentials-item">
+            English – Native proficiency
+        </div>
+
+    </div>
+</body>
+</html>
